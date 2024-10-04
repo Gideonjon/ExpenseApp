@@ -5,55 +5,98 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
+import android.widget.Toast
+import androidx.navigation.Navigation
+import com.example.expenseapp.data.ExpenseData
+import com.example.expenseapp.databinding.FragmentExpenseBinding
+import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ExpenseFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ExpenseFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+   private var _binding: FragmentExpenseBinding? = null
+    private val binding get() = _binding!!
+    private lateinit var databaseReference: DatabaseReference
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_expense, container, false)
+
+        _binding = FragmentExpenseBinding.inflate(inflater, container, false)
+        val view = binding.root
+
+        auth = FirebaseAuth.getInstance()
+        val uid = auth.currentUser?.uid
+        databaseReference = FirebaseDatabase.getInstance().getReference("ExpenseAdded")
+
+
+        val languages = resources.getStringArray(R.array.SplitOptions)
+        val arrayAdapter = ArrayAdapter(requireContext(), R.layout.dropdownmenu, languages)
+        val autoCompleteTv = binding.dropMenu
+        autoCompleteTv.setAdapter(arrayAdapter)
+
+        binding.arrowBack.setOnClickListener {
+            Navigation.findNavController(view).navigate(R.id.action_expenseFragment_to_homeFragment)
+        }
+
+        binding.postExpense.setOnClickListener {
+
+            if (isSpinnerEmpty(binding.dropMenu)) {
+                Toast.makeText(requireContext(), "Select An Item", Toast.LENGTH_LONG).show()
+            }
+            if (binding.descriptionEt.text.toString().isEmpty()) {
+                Toast.makeText(requireContext(), "Description Cant Be Empty", Toast.LENGTH_LONG)
+                    .show()
+            }
+
+            if (binding.priceEt.text.toString().isEmpty()) {
+                Toast.makeText(requireContext(), "Tile Cant Be Empty", Toast.LENGTH_LONG).show()
+            } else {
+                val projectType = binding.dropMenu.text.toString()
+                val projectDescription = binding.descriptionEt.text.toString()
+                val projectTitle = binding.priceEt.text.toString()
+
+                val jobPosted =
+                    ExpenseData(projectType, projectDescription, projectTitle)
+
+                databaseReference.push().setValue(jobPosted).addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        showSnackbar("Job Posted")
+                        Navigation.findNavController(view)
+                            .navigate(R.id.action_addProjects_to_dashboardFragment2)
+                    }
+                }.addOnFailureListener {
+
+                    showSnackbar("Job Not Posted")
+
+                }
+
+
+
+            }
+        }
+
+        }
+
+
+        return view
+
+    }
+    fun isSpinnerEmpty(autoCompleteTextView: AutoCompleteTextView): Boolean {
+        val adapter = autoCompleteTextView.adapter
+        return adapter == null || adapter.count == 0
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ExpenseFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ExpenseFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    private fun showSnackbar(message: String) {
+        val rootView = binding.root
+        Snackbar.make(rootView, message, Snackbar.LENGTH_SHORT).show()
+        Snackbar.ANIMATION_MODE_SLIDE
     }
 }

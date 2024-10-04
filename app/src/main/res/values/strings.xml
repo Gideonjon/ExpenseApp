@@ -3,7 +3,13 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string-array name="SplitOptions">
+        <item>Paid and split equally</item>
+        <item>Guest paid and split equally</item>
+        <item>Owe full amount</item>
+        <item>Owe full amount</item>
 
+    </string-array>
 
 
 
