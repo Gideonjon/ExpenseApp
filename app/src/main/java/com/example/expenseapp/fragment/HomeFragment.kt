@@ -1,4 +1,4 @@
-package com.example.expenseapp
+package com.example.expenseapp.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

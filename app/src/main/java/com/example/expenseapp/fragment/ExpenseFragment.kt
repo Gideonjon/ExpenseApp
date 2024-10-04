@@ -1,4 +1,4 @@
-package com.example.expenseapp
+package com.example.expenseapp.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Toast
 import androidx.navigation.Navigation
+import com.example.expenseapp.R
 import com.example.expenseapp.data.ExpenseData
 import com.example.expenseapp.databinding.FragmentExpenseBinding
 import com.google.android.material.snackbar.Snackbar
@@ -20,8 +21,12 @@ import com.google.firebase.database.FirebaseDatabase
 class ExpenseFragment : Fragment() {
     private var _binding: FragmentExpenseBinding? = null
     private val binding get() = _binding!!
-    private lateinit var databaseReference: DatabaseReference
-    private lateinit var auth: FirebaseAuth
+    private var listener: OnDialogNextBtnClickListener? = null
+
+
+    fun setListener(listener: OnDialogNextBtnClickListener) {
+        this.listener = listener
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,9 +37,9 @@ class ExpenseFragment : Fragment() {
         _binding = FragmentExpenseBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        auth = FirebaseAuth.getInstance()
-        val uid = auth.currentUser?.uid
-        databaseReference = FirebaseDatabase.getInstance().getReference("ExpenseAdded")
+        binding.arrowBack.setOnClickListener {
+            dismiss()
+        }
 
 
         val languages = resources.getStringArray(R.array.SplitOptions)
@@ -42,9 +47,6 @@ class ExpenseFragment : Fragment() {
         val autoCompleteTv = binding.dropMenu
         autoCompleteTv.setAdapter(arrayAdapter)
 
-        binding.arrowBack.setOnClickListener {
-            Navigation.findNavController(view).navigate(R.id.action_expenseFragment_to_homeFragment)
-        }
 
         binding.postExpense.setOnClickListener {
 
@@ -65,18 +67,6 @@ class ExpenseFragment : Fragment() {
 
                 val jobPosted =
                     ExpenseData(projectType, projectDescription, projectTitle)
-
-                databaseReference.push().setValue(jobPosted).addOnCompleteListener {
-                    if (it.isSuccessful) {
-                        showSnackbar("Job Posted")
-                        Navigation.findNavController(view)
-                            .navigate(R.id.action_expenseFragment_to_homeFragment)
-                    }
-                }.addOnFailureListener {
-
-                    showSnackbar("Job Not Posted")
-
-                }
             }
         }
 
@@ -93,5 +83,10 @@ class ExpenseFragment : Fragment() {
         val rootView = binding.root
         Snackbar.make(rootView, message, Snackbar.LENGTH_SHORT).show()
         Snackbar.ANIMATION_MODE_SLIDE
+    }
+
+    interface OnDialogNextBtnClickListener{
+        fun saveTask(todoTask:String , todoEdit:TextInputEditText)
+        fun updateTask(toDoData: ToDoData , todoEdit:TextInputEditText)
     }
 }

@@ -1,224 +1,243 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ExpenseFragment">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="400dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="12dp"
+    tools:context=".fragment.ExpenseFragment">
 
-
-    <ImageView
-        android:id="@+id/arrowBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="12dp"
-        android:src="@drawable/arrow"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_medium"
-        android:text="Type A New Expense"
-        android:textColor="@color/text_color"
-        android:textStyle="bold"
-        android:textSize="17sp"
-        app:layout_constraintBottom_toBottomOf="@+id/arrowBack"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/arrowBack" />
-
-
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="22dp"
-        android:fontFamily="@font/poppins_medium"
-        android:text="Split Options"
-        android:textColor="#035E5E"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/arrowBack" />
-
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/select_project"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="32dp"
-        android:layout_marginTop="12dp"
-        android:elevation="0dp"
-        app:endIconMode="dropdown_menu"
-        app:hintAnimationEnabled="false"
-        app:hintEnabled="false"
-        app:layout_constraintStart_toStartOf="@+id/textView11"
-        app:layout_constraintTop_toBottomOf="@+id/textView11">
+        android:layout_height="wrap_content">
 
-        <AutoCompleteTextView
-            android:id="@+id/drop_menu"
-            android:layout_width="match_parent"
+
+        <ImageView
+            android:id="@+id/arrowBack"
+            android:layout_width="50dp"
             android:layout_height="50dp"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="12dp"
+            android:src="@drawable/baseline_close_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Type A New Expense"
+            android:textColor="@color/text_color"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/arrowBack"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/arrowBack" />
+
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="22dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Split Options"
+            android:textColor="#035E5E"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/arrowBack" />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/select_project"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginTop="12dp"
             android:elevation="0dp"
+            app:endIconMode="dropdown_menu"
+            app:hintAnimationEnabled="false"
+            app:hintEnabled="false"
+            app:layout_constraintStart_toStartOf="@+id/textView11"
+            app:layout_constraintTop_toBottomOf="@+id/textView11">
+
+            <AutoCompleteTextView
+                android:id="@+id/drop_menu"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:elevation="0dp"
+                android:fontFamily="@font/poppins_medium"
+                android:hint="  Select Split Option"
+                android:inputType="none"
+                android:padding="4dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:textSize="12sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
             android:fontFamily="@font/poppins_medium"
-            android:hint="Select Split Option"
-            android:inputType="none"
-            android:padding="4dp"
+            android:text="Description"
+            android:textColor="#035E5E"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/textView11"
+            app:layout_constraintTop_toBottomOf="@+id/select_project" />
+
+
+        <TextView
+            android:id="@+id/txtDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Describe the expense in detail"
             android:textColor="@color/black"
-            android:textColorHint="@color/black"
-            android:textSize="12sp" />
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/textView14"
+            app:layout_constraintTop_toBottomOf="@id/textView14" />
 
-    </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Price"
+            android:textColor="#035E5E"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/textView14"
+            app:layout_constraintTop_toBottomOf="@id/description" />
 
-
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="17dp"
-        android:fontFamily="@font/poppins_medium"
-        android:text="Description"
-        android:textColor="#035E5E"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@+id/textView11"
-        app:layout_constraintTop_toBottomOf="@+id/select_project" />
-
-
-    <TextView
-        android:id="@+id/txtDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:fontFamily="@font/poppins_medium"
-        android:text="Describe the expense in detail"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@+id/textView14"
-        app:layout_constraintTop_toBottomOf="@id/textView14" />
-
-    <TextView
-        android:id="@+id/price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:fontFamily="@font/poppins_medium"
-        android:text="Price"
-        android:textColor="#035E5E"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@+id/textView14"
-        app:layout_constraintTop_toBottomOf="@id/description" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/title"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="32dp"
-        android:layout_marginTop="12dp"
-        app:cursorColor="@color/black"
-        app:hintAnimationEnabled="false"
-        app:hintEnabled="false"
-        app:layout_constraintEnd_toEndOf="@+id/description"
-        app:layout_constraintStart_toEndOf="@id/price"
-        app:layout_constraintTop_toBottomOf="@+id/price">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/price_et"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/title"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginTop="12dp"
+            app:cursorColor="@color/black"
+            app:hintAnimationEnabled="false"
+            app:hintEnabled="false"
+            app:layout_constraintEnd_toEndOf="@+id/description"
+            app:layout_constraintStart_toEndOf="@id/price"
+            app:layout_constraintTop_toBottomOf="@+id/price">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/price_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:hint="350,000"
+                android:inputType="number"
+                android:textColor="@color/black"
+                android:textColorHint="#B8008787"
+                android:textSize="12sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
             android:fontFamily="@font/poppins_medium"
-            android:hint="350,000"
-            android:textColor="@color/black"
-            android:inputType="number"
-            android:textColorHint="#B8008787"
-            android:textSize="12sp" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:text="Image"
+            android:textColor="#035E5E"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/price"
+            app:layout_constraintTop_toBottomOf="@+id/title" />
 
-
-    <TextView
-        android:id="@+id/textView15"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:fontFamily="@font/poppins_medium"
-        android:text="Image"
-        android:textColor="#035E5E"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@+id/price"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/workers_needed"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="32dp"
-        android:layout_marginTop="12dp"
-        app:cursorColor="@color/black"
-        app:hintAnimationEnabled="false"
-        app:hintEnabled="false"
-        app:layout_constraintTop_toBottomOf="@+id/textView15">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/workersNeeded_et"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/workers_needed"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/textinput_bg"
-            android:fontFamily="@font/poppins_medium"
-            android:hint="plumber"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"
-            android:textSize="12sp" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginTop="12dp"
+            app:cursorColor="@color/black"
+            app:hintAnimationEnabled="false"
+            app:hintEnabled="false"
+            app:layout_constraintTop_toBottomOf="@+id/textView15">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/postExpense"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="22dp"
-        android:layout_marginTop="22dp"
-        android:background="@drawable/button_bg"
-        android:fontFamily="@font/poppins_medium"
-        android:text="Post Expense"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="14sp"
-        app:layout_constraintTop_toBottomOf="@id/workers_needed" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/workersNeeded_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/textinput_bg"
+                android:fontFamily="@font/poppins_medium"
+                android:hint="plumber"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:textSize="12sp" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/description"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="32dp"
-        android:layout_marginTop="12dp"
-        app:cursorColor="@color/black"
-        app:hintAnimationEnabled="false"
-        app:hintEnabled="false"
-        app:layout_constraintTop_toBottomOf="@+id/txtDescription">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/description_et"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/postExpense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="22dp"
+            android:layout_marginTop="22dp"
+            android:background="@drawable/button_bg"
             android:fontFamily="@font/poppins_medium"
-            android:hint="hint"
-            android:lines="3"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"
-            android:textSize="12sp" />
+            android:text="Post Expense"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/workers_needed" />
 
-    </com.google.android.material.textfield.TextInputLayout>
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="22dp"
+            android:layout_marginTop="22dp"
+            android:background="@drawable/button_bg"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Post Expense"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:visibility="invisible"
+            app:layout_constraintTop_toBottomOf="@id/postExpense" />
 
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/description"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginTop="12dp"
+            app:cursorColor="@color/black"
+            app:hintAnimationEnabled="false"
+            app:hintEnabled="false"
+            app:layout_constraintTop_toBottomOf="@+id/txtDescription">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/description_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:hint="hint"
+                android:lines="3"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:textSize="12sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

@@ -1,4 +1,4 @@
-package com.example.expenseapp
+package com.example.expenseapp.fragment
 
 import android.os.Bundle
 import android.os.Handler
@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
+import com.example.expenseapp.R
 import com.example.expenseapp.databinding.FragmentSplashScreenBinding
 import com.google.firebase.auth.FirebaseAuth
 
