@@ -18,7 +18,7 @@ import com.google.firebase.database.FirebaseDatabase
 
 
 class ExpenseFragment : Fragment() {
-   private var _binding: FragmentExpenseBinding? = null
+    private var _binding: FragmentExpenseBinding? = null
     private val binding get() = _binding!!
     private lateinit var databaseReference: DatabaseReference
     private lateinit var auth: FirebaseAuth
@@ -57,7 +57,7 @@ class ExpenseFragment : Fragment() {
             }
 
             if (binding.priceEt.text.toString().isEmpty()) {
-                Toast.makeText(requireContext(), "Tile Cant Be Empty", Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), "Price Cant Be Empty", Toast.LENGTH_LONG).show()
             } else {
                 val projectType = binding.dropMenu.text.toString()
                 val projectDescription = binding.descriptionEt.text.toString()
@@ -70,25 +70,20 @@ class ExpenseFragment : Fragment() {
                     if (it.isSuccessful) {
                         showSnackbar("Job Posted")
                         Navigation.findNavController(view)
-                            .navigate(R.id.action_addProjects_to_dashboardFragment2)
+                            .navigate(R.id.action_expenseFragment_to_homeFragment)
                     }
                 }.addOnFailureListener {
 
                     showSnackbar("Job Not Posted")
 
                 }
-
-
-
             }
         }
-
-        }
-
 
         return view
 
     }
+
     fun isSpinnerEmpty(autoCompleteTextView: AutoCompleteTextView): Boolean {
         val adapter = autoCompleteTextView.adapter
         return adapter == null || adapter.count == 0

@@ -146,7 +146,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:fontFamily="@font/poppins_medium"
-        android:text="Worker Needed"
+        android:text="Image"
         android:textColor="#035E5E"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@+id/price"
