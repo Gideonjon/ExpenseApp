@@ -21,6 +21,8 @@ import com.google.firebase.database.FirebaseDatabase
 class ExpenseFragment : Fragment() {
     private var _binding: FragmentExpenseBinding? = null
     private val binding get() = _binding!!
+    private lateinit var databaseReference: DatabaseReference
+    private lateinit var auth: FirebaseAuth
 
 
     override fun onCreateView(
@@ -31,6 +33,10 @@ class ExpenseFragment : Fragment() {
 
         _binding = FragmentExpenseBinding.inflate(inflater, container, false)
         val view = binding.root
+
+        auth = FirebaseAuth.getInstance()
+        val uid = auth.currentUser?.uid
+        databaseReference = FirebaseDatabase.getInstance().getReference("ExpenseAdded")
 
         binding.arrowBack.setOnClickListener {
             Navigation.findNavController(view).navigate(R.id.action_expenseFragment_to_homeFragment)
@@ -62,6 +68,18 @@ class ExpenseFragment : Fragment() {
 
                 val jobPosted =
                     ExpenseData(projectType, projectDescription, projectTitle)
+                databaseReference.push().setValue(jobPosted).addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        showSnackbar("Expenses Added")
+                        Navigation.findNavController(view)
+                            .navigate(R.id.action_expenseFragment_to_homeFragment)
+                    }
+                }.addOnFailureListener {
+
+                    showSnackbar("Expenses Not Posted")
+
+                }
+
             }
         }
 
