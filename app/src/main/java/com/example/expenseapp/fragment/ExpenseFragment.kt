@@ -21,12 +21,7 @@ import com.google.firebase.database.FirebaseDatabase
 class ExpenseFragment : Fragment() {
     private var _binding: FragmentExpenseBinding? = null
     private val binding get() = _binding!!
-    private var listener: OnDialogNextBtnClickListener? = null
 
-
-    fun setListener(listener: OnDialogNextBtnClickListener) {
-        this.listener = listener
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,7 +33,7 @@ class ExpenseFragment : Fragment() {
         val view = binding.root
 
         binding.arrowBack.setOnClickListener {
-            dismiss()
+            Navigation.findNavController(view).navigate(R.id.action_expenseFragment_to_homeFragment)
         }
 
 
@@ -85,8 +80,5 @@ class ExpenseFragment : Fragment() {
         Snackbar.ANIMATION_MODE_SLIDE
     }
 
-    interface OnDialogNextBtnClickListener{
-        fun saveTask(todoTask:String , todoEdit:TextInputEditText)
-        fun updateTask(toDoData: ToDoData , todoEdit:TextInputEditText)
-    }
+
 }
